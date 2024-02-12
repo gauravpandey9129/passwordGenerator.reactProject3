@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState ,useRef} from "react";
 
 
 function App() {
@@ -6,6 +6,12 @@ function App() {
   const [number,setNumber]=useState(false)
   const [characters,setCharacters]=useState(false)
   const [range,setRange]=useState(8)
+  const ref=useRef('')
+
+  const handleCopy=()=>{
+    ref.current?.select()
+    window.navigator.clipboard.writeText(password)
+  }
 
   const passwordGenerator=useCallback(()=>{
      let pass='';
@@ -31,8 +37,8 @@ function App() {
        <div className=" border-danger  bg-dark-subtle text-center w-50 mx-auto p-5">
        <div className="input-group mb-3">
   
-        <input type="text"   readOnly className="form-control input-group-large" value={password} aria-label="Example text with button addon" aria-describedby="button-addon1"/>
-        <button className="btn btn-outline-secondary text-light btn-outline-warning  btn-primary" type="button" id="button-addon1">Copy</button>
+        <input type="text"   readOnly className="form-control input-group-large" value={password} ref={ref} aria-label="Example text with button addon" aria-describedby="button-addon1"/>
+        <button className="btn btn-outline-secondary text-light btn-outline-warning  btn-primary" onClick={handleCopy} type="button" id="button-addon1">Copy</button>
          </div>
          <div className="container bg-danger-subtle">
          <input type="range"   value={range} onChange={(event)=>{ setRange(event.target.value)}}min={5} max={20} id="range"></input><br/>
