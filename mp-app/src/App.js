@@ -1,0 +1,27 @@
+import { useState } from "react";
+
+
+function App() {
+  const [password,setPassword]=useState('')
+  const [number,setNumber]=useState(false)
+  const [characters,setCharacters]=useState(false)
+  const [range,setRange]=useState(8)
+  return (
+  <> 
+      
+       <div className=" border-danger text-light bg-dark-subtle text-center w-50 mx-auto p-5">
+       <div className="input-group mb-3">
+  
+        <input type="text" className="form-control input-group-large" value={password} aria-label="Example text with button addon" aria-describedby="button-addon1"/>
+        <button className="btn btn-outline-secondary text-light btn-outline-warning  btn-primary" type="button" id="button-addon1">Copy</button>
+         </div>
+         <label htmlFor="range">Number Of Words={range}
+         <input type="range"   value={range} onChange={(event)=>{ setRange(event.target.value)}}min={5} max={20} id="range"></input></label>
+
+        </div>
+       
+    
+  </>)
+}
+
+export default App;
